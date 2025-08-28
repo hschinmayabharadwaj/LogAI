@@ -36,16 +36,9 @@ const rankErrorSeverityPrompt = ai.definePrompt({
   name: 'rankErrorSeverityPrompt',
   input: {schema: RankErrorSeverityInputSchema},
   output: {schema: RankErrorSeverityOutputSchema},
-  prompt: `You are an AI expert in classifying error log severity.
-
-  Given the following error log, rank its severity on a scale of 1 to 10, where 1 is the least severe and 10 is the most severe.
-
-  Error Log: {{{log}}}
-
-  Justify your severity ranking, and return both the ranking, and the justification.
-
-  Return your answer as a JSON object.
-  `,
+  prompt: `Given this error log, rank its severity from 1 (least severe) to 10 (most severe).
+Error Log: {log}
+Return a JSON object with severity and reason.`,
 });
 
 const rankErrorSeverityFlow = ai.defineFlow(
