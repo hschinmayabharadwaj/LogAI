@@ -58,7 +58,7 @@ export default function ErrorCard({ result }: ErrorCardProps) {
           </div>
         </div>
         <div className="pt-4">
-          <Progress value={result.severity.severity * 10} className="h-2 [&>div]:bg-destructive" style={{ '--tw-progress-indicator': severityColor(result.severity.severity) } as React.CSSProperties} />
+          <Progress value={result.severity.severity * 10} className="h-2" style={{ backgroundColor: severityColor(result.severity.severity) }} />
           <p className="text-xs text-muted-foreground mt-2">{result.severity.reason}</p>
         </div>
       </CardHeader>
@@ -107,23 +107,3 @@ export default function ErrorCard({ result }: ErrorCardProps) {
     </Card>
   );
 }
-
-// Override progress indicator color
-const originalProgress = Progress;
-const CustomProgress = React.forwardRef<
-  React.ElementRef<typeof originalProgress>,
-  React.ComponentPropsWithoutRef<typeof originalProgress>
->(({className, value, ...props}, ref) => (
-    <originalProgress
-        ref={ref}
-        className={cn("relative h-4 w-full overflow-hidden rounded-full bg-secondary", className)}
-        {...props}
-    >
-        <Progress.Indicator
-            className="h-full w-full flex-1 bg-[var(--tw-progress-indicator)] transition-all"
-            style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-        />
-    </originalProgress>
-));
-CustomProgress.displayName = "Progress"
-Object.assign(Progress, CustomProgress);
