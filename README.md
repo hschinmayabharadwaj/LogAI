@@ -26,4 +26,3 @@ Welcome to **LogLensAI**! This project helps you analyze logs with AI-powered fe
 
 ---
 
-Let me know if you want me to try updating the file again automatically.
